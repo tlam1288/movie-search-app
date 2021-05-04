@@ -7,6 +7,7 @@ import Movie from "./components/Movie";
 function App() {
   const [movies, setMovies] = useState([]);
   const [search, setSearch] = useState("");
+  const [nominees, setNominees] = useState([]);
 
   function searchMovie(search) {
     const api = `http://www.omdbapi.com/?apikey=8de7c732&s=${search}`;
@@ -29,6 +30,11 @@ function App() {
     return setSearch(e.target.value);
   };
 
+  function addNominee(movie) {
+    setNominees([...nominees, movie]);
+    console.log(nominees);
+  }
+
   return (
     <div>
       <h1>Nominate your favorite movie for a Shoppie Award!</h1>
@@ -38,7 +44,7 @@ function App() {
         onChange={handleInputChange}
       />
       <div>
-        <Movie movies={movies} />
+        <Movie movies={movies} handleAddNominee={addNominee} />
       </div>
     </div>
   );
