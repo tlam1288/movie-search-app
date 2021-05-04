@@ -12,6 +12,9 @@ function Movie(props) {
           <button onClick={() => props.handleAddNominee(movie)}>
             Nominate
           </button>
+          <button onClick={() => props.handleDeleteNominee(movie)}>
+            Delete
+          </button>
         </div>
       ))}
     </div>

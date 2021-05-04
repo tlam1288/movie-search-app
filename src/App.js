@@ -11,6 +11,7 @@ function App() {
 
   function searchMovie(search) {
     const api = `http://www.omdbapi.com/?apikey=8de7c732&s=${search}`;
+
     fetch(api)
       .then((res) => res.json())
       .then((data) => {
@@ -35,6 +36,14 @@ function App() {
     console.log(nominees);
   }
 
+  function deleteNominee(movie) {
+    const updatedNomineeList = nominees.filter(
+      (nominee) => nominee.imdbID !== movie.imdbID
+    );
+
+    setNominees(updatedNomineeList);
+  }
+
   return (
     <div>
       <h1>Nominate your favorite movie for a Shoppie Award!</h1>
@@ -45,6 +54,10 @@ function App() {
       />
       <div>
         <Movie movies={movies} handleAddNominee={addNominee} />
+      </div>
+      <div>
+        <h3>Movies you nominated</h3>
+        <Movie movies={nominees} handleDeleteNominee={deleteNominee} />
       </div>
     </div>
   );
