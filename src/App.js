@@ -3,6 +3,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
 import Movie from "./components/Movie";
+import Add from "./components/AddNominee";
+import Delete from "./components/DeleteNominee";
 
 function App() {
   const [movies, setMovies] = useState([]);
@@ -26,6 +28,12 @@ function App() {
   useEffect(() => {
     searchMovie(search);
   }, [search]);
+
+  useEffect(() => {
+    if (nominees.length > 4) {
+      alert("You have nominated 5 films!");
+    }
+  }, [nominees]);
 
   const handleInputChange = (e) => {
     return setSearch(e.target.value);
@@ -53,11 +61,19 @@ function App() {
         onChange={handleInputChange}
       />
       <div>
-        <Movie movies={movies} handleAddNominee={addNominee} />
+        <Movie
+          nominateComponent={Add}
+          movies={movies}
+          handleClick={addNominee}
+        />
       </div>
       <div>
         <h3>Movies you nominated</h3>
-        <Movie movies={nominees} handleDeleteNominee={deleteNominee} />
+        <Movie
+          nominateComponent={Delete}
+          movies={nominees}
+          handleClick={deleteNominee}
+        />
       </div>
     </div>
   );

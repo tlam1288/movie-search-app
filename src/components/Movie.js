@@ -1,6 +1,8 @@
 import React from "react";
 
 function Movie(props) {
+  const Btn = props.nominateComponent;
+  //const DeleteBtn = props.nominate;
   return (
     <div>
       {props.movies.map((movie, index) => (
@@ -9,12 +11,16 @@ function Movie(props) {
           <p>{movie.Year}</p>
           <img src={movie.Poster} alt="movie poster"></img>
           <br />
-          <button onClick={() => props.handleAddNominee(movie)}>
+          <div onClick={() => props.handleClick(movie)}>
+            <Btn />
+          </div>
+          {/* <button onClick={() => props.handleAddNominee(movie)}>
             Nominate
           </button>
+
           <button onClick={() => props.handleDeleteNominee(movie)}>
             Delete
-          </button>
+          </button> */}
         </div>
       ))}
     </div>
