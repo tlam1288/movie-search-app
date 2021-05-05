@@ -40,9 +40,21 @@ function App() {
     }
   }, [nominees]);
 
+  useEffect(() => {
+    const savedNominated = JSON.parse(localStorage.getItem("nominated-movies"));
+
+    if (savedNominated) {
+      setNominees(savedNominated);
+    }
+  }, []);
+
   const handleInputChange = (e) => {
     return setSearch(e.target.value);
   };
+
+  function saveLocalStorage(movie) {
+    localStorage.setItem("nominated-movies", JSON.stringify(movie));
+  }
 
   function addNominee(movie) {
     console.log(nominees);
@@ -52,6 +64,7 @@ function App() {
       return;
     } else {
       setNominees([...nominees, movie]);
+      saveLocalStorage([...nominees, movie]);
     }
   }
 
@@ -61,6 +74,7 @@ function App() {
     );
 
     setNominees(updatedNomineeList);
+    saveLocalStorage(updatedNomineeList);
   }
 
   return (
