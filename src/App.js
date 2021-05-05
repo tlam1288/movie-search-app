@@ -3,8 +3,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
 import Movie from "./components/Movie";
-import Add from "./components/AddNominee";
-import Delete from "./components/DeleteNominee";
+//import Add from "./components/AddNominee";
+//import Delete from "./components/DeleteNominee";
+//import NominatedMovie from "./components/NominatedMovie";
 
 function App() {
   const [movies, setMovies] = useState([]);
@@ -17,14 +18,18 @@ function App() {
     fetch(api)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data.Search) {
           setMovies(data.Search);
+          console.log(movies);
         }
       })
       .catch((err) => console.log(err));
   }
 
+  // searches for movies
+  // function queryOMDB() {
+  //   searchMovie(search);
+  // }
   useEffect(() => {
     searchMovie(search);
   }, [search]);
@@ -40,8 +45,14 @@ function App() {
   };
 
   function addNominee(movie) {
-    setNominees([...nominees, movie]);
     console.log(nominees);
+
+    if (nominees.includes(movie)) {
+      alert("This movie has already been nominated!");
+      return;
+    } else {
+      setNominees([...nominees, movie]);
+    }
   }
 
   function deleteNominee(movie) {
@@ -60,18 +71,30 @@ function App() {
         value={search}
         onChange={handleInputChange}
       />
+      {/* <input type="submit" onClick={queryOMDB} /> */}
       <div>
+        {/* {movies.map((item) => (
+          <Movie
+            key={item.imdbID}
+            nominateComponent={nominees.imdbID ? Add : Delete}
+            movies={movies}
+            handleClick={addNominee}
+          />
+        ))} */}
         <Movie
-          nominateComponent={Add}
+          //nominateComponent={!activeBtn.imdbID ? Add : Delete}
           movies={movies}
+          status={true}
           handleClick={addNominee}
         />
       </div>
       <div>
         <h3>Movies you nominated</h3>
+        {/* <NominatedMovie movies={nominees} handleDelete={deleteNominee} /> */}
         <Movie
-          nominateComponent={Delete}
+          // nominateComponent={activeBtn.imdbID ? Delete : Add}
           movies={nominees}
+          status={false}
           handleClick={deleteNominee}
         />
       </div>
