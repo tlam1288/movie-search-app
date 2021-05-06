@@ -40,6 +40,7 @@ function App() {
     }
   }, [nominees]);
 
+  //renders local storage upon loading
   useEffect(() => {
     const savedNominated = JSON.parse(localStorage.getItem("nominated-movies"));
 
@@ -78,39 +79,27 @@ function App() {
   }
 
   return (
-    <div>
-      <h1>Nominate your favorite movie for a Shoppie Award!</h1>
-      <input
-        placeholder="Search for a movie"
-        value={search}
-        onChange={handleInputChange}
-      />
-      {/* <input type="submit" onClick={queryOMDB} /> */}
-      <div>
-        {/* {movies.map((item) => (
-          <Movie
-            key={item.imdbID}
-            nominateComponent={nominees.imdbID ? Add : Delete}
-            movies={movies}
-            handleClick={addNominee}
+    <div className="container-fluid movie">
+      <div className="row d-flex align-items-center mt-4 mb-4">
+        <h3>Nominate your favorite movie for a Shoppie Award!</h3>
+
+        <div className="col col-sm-6">
+          <input
+            placeholder="Search for a movie"
+            value={search}
+            onChange={handleInputChange}
           />
-        ))} */}
-        <Movie
-          //nominateComponent={!activeBtn.imdbID ? Add : Delete}
-          movies={movies}
-          status={true}
-          handleClick={addNominee}
-        />
+        </div>
       </div>
-      <div>
-        <h3>Movies you nominated</h3>
-        {/* <NominatedMovie movies={nominees} handleDelete={deleteNominee} /> */}
-        <Movie
-          // nominateComponent={activeBtn.imdbID ? Delete : Add}
-          movies={nominees}
-          status={false}
-          handleClick={deleteNominee}
-        />
+      <div className="row">
+        <Movie movies={movies} status={true} handleClick={addNominee} />
+      </div>
+      <div className="row d-flex align-items-center mt-4 mb-4">
+        <h3>Movies you have nominated</h3>
+      </div>
+
+      <div className="row">
+        <Movie movies={nominees} status={false} handleClick={deleteNominee} />
       </div>
     </div>
   );

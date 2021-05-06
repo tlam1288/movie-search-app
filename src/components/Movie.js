@@ -4,34 +4,23 @@ function Movie(props) {
   //const Btn = props.nominateComponent;
   //const DeleteBtn = props.nominate;
   return (
-    <div>
+    <>
       {props.movies.map((movie, index) => (
-        <div key={index}>
-          <h1>{movie.Title}</h1>
-          <p>{movie.Year}</p>
+        <div key={index} className=" justify-content-start m-3">
           <img src={movie.Poster} alt="movie poster"></img>
-          <br />
-          {/* <div onClick={() => props.handleClick(movie)}>
-            <Btn />
-          </div> */}
-          {/* <button onClick={() => props.handleAddNominee(movie)}>
-            Nominate
-          </button>
-
-          <button onClick={() => props.handleDeleteNominee(movie)}>
-            Delete
-          </button> */}
-          {/* {props.activeBtn ? (
-            <button onClick={() => props.handleClick(movie)}>Add</button>
-          ) : (
-            <button onClick={() => props.handleClick(movie)}>Delete</button>
-          )} */}
-          <button onClick={() => props.handleClick(movie)}>
-            {props.status ? "Add" : "Delete"}
-          </button>
+          <div className="text-center">
+            <h5>{movie.Title}</h5>
+            <h5>{movie.Year}</h5>
+            <button
+              class="btn btn-primary btn-lg"
+              onClick={() => props.handleClick(movie)}
+            >
+              {props.status ? "Add" : "Delete"}
+            </button>
+          </div>
         </div>
       ))}
-    </div>
+    </>
   );
 }
 
