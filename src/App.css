@@ -3,7 +3,23 @@ body {
   color: #fff;
 }
 
+.headerDiv {
+  padding: 60px;
+  text-align: center;
+  background-image: url("./images/movie_poster.jpg");
+  justify-content: center;
+}
+
+header > h1 {
+  color: rgb(252, 2, 2);
+  font-size: 100px;
+  font-weight: bold;
+}
+
 .movie > .row {
   overflow-x: auto;
-  flex-wrap: nowrap;
+}
+
+.roundedInput {
+  border-radius: 50px 50px 50px 50px;
 }

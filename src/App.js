@@ -92,11 +92,17 @@ function App() {
 
   return (
     <div className="container-fluid movie">
+      <div className="row d-flex align-items-center mt-4 mb-4 headerDiv">
+        <header>
+          <h1>The Shoppies</h1>
+        </header>
+      </div>
       <div className="row d-flex align-items-center mt-4 mb-4">
         <h3>Nominate your favorite movie for a Shoppie Award!</h3>
 
         <div className="col col-sm-6">
           <input
+            className="roundedInput"
             placeholder="Search for a movie"
             value={search}
             onChange={handleInputChange}
