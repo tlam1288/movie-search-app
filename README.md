@@ -1,3 +1,15 @@
+# The Shoppies
+
+Search for your favorite movies and then nominate them for a Shoppie award!
+
+You can only nominate a movie once and you can remove it from the nominees list if you change your mind
+
+## Features
+
+- Search for any movie using the OMDB API
+- Your nominees list will be saved to local storage so you can come back to it later!
+- Toast notifications to notify you when you add a duplicate, hit 5 nominations, or when you add/delete a movie
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

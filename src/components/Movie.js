@@ -1,8 +1,6 @@
 import React from "react";
 
 function Movie(props) {
-  //const Btn = props.nominateComponent;
-  //const DeleteBtn = props.nominate;
   return (
     <>
       {props.movies.map((movie, index) => (

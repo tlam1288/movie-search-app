@@ -10,6 +10,7 @@ function App() {
   const [search, setSearch] = useState("");
   const [nominees, setNominees] = useState([]);
 
+  //toast for duplicate nominations
   const notify = () =>
     toast.error(
       "This movie has already been nominated!",
@@ -19,6 +20,7 @@ function App() {
       { autoClose: 1000 }
     );
 
+  //toast for 5 movies nominated
   const fiveTotal = () =>
     toast.info(
       "You have nominated 5 or more films!",
@@ -26,6 +28,25 @@ function App() {
         position: toast.POSITION.TOP_CENTER,
       },
       { autoClose: 1000 }
+    );
+
+  //toast for adding a movie
+  const added = () =>
+    toast.success(
+      "Successfully Nominated!",
+      {
+        position: toast.POSITION.TOP_CENTER,
+      },
+      { delay: 2000 }
+    );
+
+  const removed = () =>
+    toast.success(
+      "Movie deleted!",
+      {
+        position: toast.POSITION.TOP_CENTER,
+      },
+      { delay: 2000 }
     );
 
   function searchMovie(search) {
@@ -78,6 +99,7 @@ function App() {
     } else {
       setNominees([...nominees, movie]);
       saveLocalStorage([...nominees, movie]);
+      added();
     }
   }
 
@@ -88,6 +110,7 @@ function App() {
 
     setNominees(updatedNomineeList);
     saveLocalStorage(updatedNomineeList);
+    removed();
   }
 
   return (
