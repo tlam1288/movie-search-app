@@ -16,7 +16,7 @@ function App() {
       {
         position: toast.POSITION.TOP_CENTER,
       },
-      { autoClose: 2000 }
+      { autoClose: 1000 }
     );
 
   const fiveTotal = () =>
@@ -25,7 +25,7 @@ function App() {
       {
         position: toast.POSITION.TOP_CENTER,
       },
-      { autoClose: 2000 }
+      { autoClose: 1000 }
     );
 
   function searchMovie(search) {
@@ -42,17 +42,12 @@ function App() {
       .catch((err) => console.log(err));
   }
 
-  // searches for movies
-  // function queryOMDB() {
-  //   searchMovie(search);
-  // }
   useEffect(() => {
     searchMovie(search);
   }, [search]);
 
   useEffect(() => {
-    if (nominees.length > 4) {
-      //alert("You have nominated 5 films!");
+    if (nominees.length === 5) {
       fiveTotal();
     }
   }, [nominees]);
@@ -78,7 +73,6 @@ function App() {
     console.log(nominees);
 
     if (nominees.includes(movie)) {
-      //alert("This movie has already been nominated!");
       notify();
       return;
     } else {
