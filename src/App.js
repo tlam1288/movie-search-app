@@ -29,7 +29,7 @@ function App() {
     );
 
   function searchMovie(search) {
-    const api = `http://www.omdbapi.com/?apikey=8de7c732&s=${search}`;
+    const api = `https://www.omdbapi.com/?apikey=8de7c732&s=${search}`;
 
     fetch(api)
       .then((res) => res.json())
