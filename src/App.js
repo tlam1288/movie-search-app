@@ -1,16 +1,32 @@
 import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Movie from "./components/Movie";
-//import Add from "./components/AddNominee";
-//import Delete from "./components/DeleteNominee";
-//import NominatedMovie from "./components/NominatedMovie";
 
 function App() {
   const [movies, setMovies] = useState([]);
   const [search, setSearch] = useState("");
   const [nominees, setNominees] = useState([]);
+
+  const notify = () =>
+    toast.error(
+      "This movie has already been nominated!",
+      {
+        position: toast.POSITION.TOP_CENTER,
+      },
+      { autoClose: 2000 }
+    );
+
+  const fiveTotal = () =>
+    toast.info(
+      "You have nominated 5 or more films!",
+      {
+        position: toast.POSITION.TOP_CENTER,
+      },
+      { autoClose: 2000 }
+    );
 
   function searchMovie(search) {
     const api = `http://www.omdbapi.com/?apikey=8de7c732&s=${search}`;
@@ -36,7 +52,8 @@ function App() {
 
   useEffect(() => {
     if (nominees.length > 4) {
-      alert("You have nominated 5 films!");
+      //alert("You have nominated 5 films!");
+      fiveTotal();
     }
   }, [nominees]);
 
@@ -61,7 +78,8 @@ function App() {
     console.log(nominees);
 
     if (nominees.includes(movie)) {
-      alert("This movie has already been nominated!");
+      //alert("This movie has already been nominated!");
+      notify();
       return;
     } else {
       setNominees([...nominees, movie]);
@@ -101,6 +119,7 @@ function App() {
       <div className="row">
         <Movie movies={nominees} status={false} handleClick={deleteNominee} />
       </div>
+      <ToastContainer />
     </div>
   );
 }
