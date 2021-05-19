@@ -4,8 +4,8 @@ function Movie(props) {
   return (
     <>
       {props.movies.map((movie, index) => (
-        <div key={index} className=" justify-content-start m-3">
-          <img src={movie.Poster} alt="movie poster"></img>
+        <div key={index} className=" justify-content-start m-3 ">
+          <img src={movie.Poster} alt="movie poster" className="poster"></img>
           <div className="text-center">
             <h5>{movie.Title}</h5>
             <h5>{movie.Year}</h5>

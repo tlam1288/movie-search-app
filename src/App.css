@@ -23,3 +23,7 @@ header > h1 {
 .roundedInput {
   border-radius: 50px 50px 50px 50px;
 }
+
+.poster {
+  height: 75%;
+}
